@@ -144,4 +144,143 @@ leftArrow.addEventListener('click', goLeft);
 rightArrow.addEventListener('click', goRight);
 
 // Initialize
-updateCarousel(); 
+updateCarousel();
+
+// Product Data and Filtering Functionality
+const products = [
+    {
+        id: 1,
+        name: "Bloem Shirt",
+        price: 40,
+        category: "tshirt",
+        image: "images/Bloem shirt met vrouw model.png"
+    },
+    {
+        id: 2,
+        name: "AI Garden Shirt",
+        price: 40,
+        category: "tshirt",
+        image: "images/Fiori ai gaarde met model.png"
+    },
+    {
+        id: 3,
+        name: "Fruit Shirt",
+        price: 40,
+        category: "tshirt",
+        image: "images/Fiori fruit met model.png"
+    },
+    {
+        id: 4,
+        name: "House Shirt",
+        price: 40,
+        category: "tshirt",
+        image: "images/Fiori huis met model.png"
+    },
+    {
+        id: 5,
+        name: "Parrot Shirt",
+        price: 40,
+        category: "tshirt",
+        image: "images/Fiori papegaai shirt.png"
+    },
+    {
+        id: 6,
+        name: "Vase Shirt",
+        price: 40,
+        category: "tshirt",
+        image: "images/Vaas shirt met model 2.png"
+    }
+];
+
+// Product filtering functionality
+function initializeProductFiltering() {
+    console.log('Starting product filtering initialization...');
+    
+    const productGrid = document.getElementById('productGrid');
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    
+    console.log('Product grid found:', productGrid);
+    console.log('Filter buttons found:', filterButtons.length);
+    
+    if (!productGrid) {
+        console.log('Product grid not found');
+        return; // Only run on products page
+    }
+    
+    if (filterButtons.length === 0) {
+        console.log('No filter buttons found');
+        return;
+    }
+    
+    console.log('Product grid found, initializing filtering...');
+    
+    let currentCategory = 'all';
+    
+    // Add data-category attribute to existing static cards
+    const existingCards = productGrid.querySelectorAll('.product-card');
+    console.log('Found existing cards:', existingCards.length);
+    
+    existingCards.forEach((card, index) => {
+        card.setAttribute('data-category', 'tshirt');
+        console.log(`Card ${index + 1} assigned category: tshirt`);
+    });
+    
+    function renderProducts(category) {
+        console.log('Rendering products for category:', category);
+        
+        const allCards = productGrid.querySelectorAll('.product-card');
+        console.log('Total cards to filter:', allCards.length);
+        
+        allCards.forEach((card, index) => {
+            const cardCategory = card.getAttribute('data-category');
+            console.log(`Card ${index + 1} category: ${cardCategory}`);
+            
+            if (category === 'all' || cardCategory === category) {
+                card.style.display = 'block';
+                console.log(`Card ${index + 1} shown`);
+            } else {
+                card.style.display = 'none';
+                console.log(`Card ${index + 1} hidden`);
+            }
+        });
+    }
+    
+    // Add click event listeners to filter buttons
+    filterButtons.forEach((button, index) => {
+        console.log(`Adding click listener to button ${index + 1}:`, button.getAttribute('data-category'));
+        
+        button.addEventListener('click', (e) => {
+            e.preventDefault();
+            const category = button.getAttribute('data-category');
+            console.log('Filter button clicked:', category);
+            
+            // Remove active class from all buttons
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            
+            // Add active class to clicked button
+            button.classList.add('active');
+            
+            // Get category and render products
+            currentCategory = category;
+            renderProducts(category);
+        });
+    });
+    
+    // Initialize with all products visible
+    console.log('Initializing product filtering...');
+    renderProducts('all');
+}
+
+// Initialize product filtering when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    console.log('DOM loaded, initializing product filtering...');
+    initializeProductFiltering();
+});
+
+// Also try to initialize immediately if DOM is already loaded
+if (document.readyState === 'loading') {
+    console.log('DOM still loading...');
+} else {
+    console.log('DOM already loaded, initializing immediately...');
+    initializeProductFiltering();
+} 

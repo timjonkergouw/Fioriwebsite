@@ -1,17 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fiori</title>
+    <title>AI Garden Shirt - Fiori</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Days+One&display=swap" rel="stylesheet">
 </head>
-
-<body class="home" style="background: #383838;">
+<body class="product-page" style="background: #181818;">
     <!-- Header -->
     <header>
         <div class="logo">
@@ -41,43 +39,60 @@
         </ul>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <img src="images/Fiori animatie loop.gif" alt="Fiori Fashion Showcase" class="hero-gif">
-        <div class="section-gradient"></div>
-    </section>
-
-    <!-- Hero to New Arrivals Gradient -->
-    <section class="hero-new-arrivals-gradient"></section>
-
-    <!-- New Arrivals -->
-    <section class="new-arrivals">
-        <h2>New Arrivals</h2>
-        <div class="carousel-container">
-            <button class="carousel-arrow left"><img src="images/pijl links.png" alt="Vorige"></button>
-            <div class="carousel">
-                <div class="carousel-item"><img src="images/Bloem shirt met vrouw model.png" alt="New Item 1"></div>
-                <div class="carousel-item"><img src="images/Fiori ai gaarde met model.png" alt="New Item 2"></div>
-                <div class="carousel-item"><img src="images/Fiori fruit met model.png" alt="New Item 3"></div>
-                <div class="carousel-item"><img src="images/Fiori huis met model.png" alt="New Item 4"></div>
-                <div class="carousel-item"><img src="images/Fiori papegaai shirt.png" alt="New Item 5"></div>
+    <!-- Product Section -->
+    <section class="product-section">
+        <div class="product-container">
+            <!-- Product Images -->
+            <div class="product-images">
+                <div class="main-image">
+                    <img src="images/Fiori ai gaarde met model.png" alt="AI Garden Shirt" id="mainProductImage">
+                </div>
+                <div class="image-thumbnails">
+                    <img src="images/Fiori ai gaarde met model.png" alt="AI Garden Shirt Front" class="thumbnail active" onclick="changeImage(this, 'images/Fiori ai gaarde met model.png')">
+                    <img src="images/Bloem shirt met vrouw model.png" alt="AI Garden Shirt Back" class="thumbnail" onclick="changeImage(this, 'images/Bloem shirt met vrouw model.png')">
+                    <img src="images/Fiori fruit met model.png" alt="AI Garden Shirt Detail" class="thumbnail" onclick="changeImage(this, 'images/Fiori fruit met model.png')">
+                </div>
             </div>
-            <button class="carousel-arrow right"><img src="images/pijl rechts.png" alt="Volgende"></button>
-        </div>
-        <a href="/new-arrivals.html" class="all-arrivals-btn">Discover All</a>
-    </section>
 
-    <!-- About Section -->
-    <section class="about-section" style="background: white;">
-        <div class="about-content">
-            <h2>About Fiori</h2>
-            <p>Fiori is a brand that brings a cheerful, summery vibe to life through playful, fresh designs. Inspired by
-                sunshine, nature, and color, Fiori captures the joy of warm days. The name Fiori means "flowers" in
-                Italian, reflecting the brand's love for blooming beauty and vibrant energy. Every piece is made to
-                brighten your day—just like summer does.</p>
-        </div>
-        <div class="about-visual">
-            <img src="images/Fiori combilogo.png" alt="Fiori Logo Variations">
+            <!-- Product Info -->
+            <div class="product-info">
+                <h1 class="product-title">AI Garden Shirt</h1>
+                <p class="product-description">
+                    Een futuristisch shirt met een AI-gegenereerde tuinprint die de perfecte balans vindt tussen technologie en natuur. 
+                    Dit unieke design combineert moderne AI-kunst met de tijdloze schoonheid van een bloeiende tuin. 
+                    Perfect voor wie houdt van innovatie en creativiteit in mode.
+                </p>
+                <div class="product-price">€40</div>
+                
+                <!-- Size Selection -->
+                <div class="size-selection">
+                    <label>Maat:</label>
+                    <div class="size-options">
+                        <button class="size-option" data-size="S" onclick="selectSize(this, 'S')">S</button>
+                        <button class="size-option" data-size="M" onclick="selectSize(this, 'M')">M</button>
+                        <button class="size-option" data-size="L" onclick="selectSize(this, 'L')">L</button>
+                        <button class="size-option" data-size="XL" onclick="selectSize(this, 'XL')">XL</button>
+                    </div>
+                </div>
+
+                <!-- Add to Cart Button -->
+                <button class="add-to-cart-btn" onclick="addAIGardenShirtToCart()">
+                    <i class="fas fa-shopping-cart"></i>
+                    Toevoegen aan winkelwagen
+                </button>
+
+                <!-- Product Details -->
+                <div class="product-details">
+                    <h3>Product Details</h3>
+                    <ul>
+                        <li><strong>Materiaal:</strong> 100% biologisch katoen</li>
+                        <li><strong>Pasvorm:</strong> Regular fit</li>
+                        <li><strong>Verzorging:</strong> Machine wasbaar op 30°C</li>
+                        <li><strong>Design:</strong> AI-gegenereerde unieke print</li>
+                        <li><strong>Duurzaamheid:</strong> GOTS gecertificeerd</li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -171,6 +186,39 @@
 
     <script src="script.js"></script>
     <script src="cart.js"></script>
-</body>
+    <script>
+        // Image gallery functionality
+        function changeImage(thumbnail, imageSrc) {
+            // Update main image
+            document.getElementById('mainProductImage').src = imageSrc;
+            
+            // Update active thumbnail
+            document.querySelectorAll('.thumbnail').forEach(thumb => {
+                thumb.classList.remove('active');
+            });
+            thumbnail.classList.add('active');
+        }
 
-</html>
+        // Product-specific add to cart function
+        function addAIGardenShirtToCart() {
+            addToCart('AI Garden Shirt', 40, 'images/Fiori ai gaarde met model.png');
+        }
+
+        // Size selection function (local override if needed)
+        function selectSize(element, size) {
+            // Remove selected class from all size options
+            document.querySelectorAll('.size-option').forEach(option => {
+                option.classList.remove('selected');
+            });
+            
+            // Add selected class to clicked option
+            element.classList.add('selected');
+        }
+
+        // Side menu functionality
+        document.querySelector('.hamburger-menu').addEventListener('click', function() {
+            document.querySelector('.side-menu').classList.toggle('active');
+        });
+    </script>
+</body>
+</html> 
