@@ -1,0 +1,198 @@
+# 🌸 Fiori Website
+
+Een moderne, responsieve e-commerce website voor het Fiori kledingmerk. Fiori brengt vrolijke, zomerse vibes tot leven door middel van speelse, frisse designs geïnspireerd door zonneschijn, natuur en kleur.
+
+## 📋 Overzicht
+
+Fiori is een Nederlands kledingmerk dat zich richt op vrolijke, zomerse kleding. De naam "Fiori" betekent "bloemen" in het Italiaans en weerspiegelt de liefde van het merk voor bloeiende schoonheid en levendige energie. Elke kledingstuk is gemaakt om je dag op te fleuren - net zoals de zomer dat doet.
+
+## ✨ Functionaliteiten
+
+### 🏠 Homepage
+- **Hero Section**: Animatieloop met Fiori fashion showcase
+- **New Arrivals Carousel**: 5-slot sliding carousel met nieuwe producten
+- **About Section**: Informatie over het Fiori merk
+- **Newsletter Signup**: Email nieuwsbrief inschrijving
+- **Responsive Design**: Volledig responsive voor alle apparaten
+
+### 🛍️ E-commerce Functionaliteiten
+- **Product Catalogus**: Overzicht van alle beschikbare producten
+- **Product Pagina's**: Gedetailleerde productinformatie met meerdere afbeeldingen
+- **Winkelwagen Systeem**: 
+  - Producten toevoegen/verwijderen
+  - Maat selectie
+  - Prijsberekening
+  - Lokale opslag (localStorage)
+- **Betaling Systeem**: Geïntegreerd betalingsformulier
+- **Product Filtering**: Filteren op categorieën (T-shirts, Sweaters, etc.)
+
+### 🎨 UI/UX Features
+- **Hamburger Menu**: Zijmenu voor navigatie
+- **Smooth Animations**: Vloeiende overgangen en animaties
+- **Interactive Elements**: Hover effecten en feedback
+- **Modern Design**: Clean en minimalistisch design
+- **Mobile-First**: Geoptimaliseerd voor mobiele apparaten
+
+## 🛠️ Technische Stack
+
+- **Frontend**: HTML5, CSS3, JavaScript (ES6+)
+- **Styling**: Custom CSS met responsive design
+- **Icons**: Font Awesome 6.0
+- **Fonts**: Google Fonts (Poppins, Days One)
+- **Storage**: LocalStorage voor winkelwagen
+- **No Build Tools**: Pure HTML/CSS/JS implementatie
+
+## 📁 Project Structuur
+
+```
+Fioriwebsite/
+├── index.html              # Homepage
+├── new-arrivals.html       # Product catalogus pagina
+├── product-*.html          # Individuele product pagina's
+├── styles.css              # Hoofdstijlen
+├── script.js               # Hoofdfunctionaliteit
+├── cart.js                 # Winkelwagen en betaling
+├── images/                 # Product en brand afbeeldingen
+│   ├── Fiori logo*.png     # Logo variaties
+│   ├── Fiori animatie loop.gif
+│   ├── Product afbeeldingen/
+│   └── UI elementen/
+└── README                  # Deze file
+```
+
+## 🚀 Installatie & Gebruik
+
+### Vereisten
+- Moderne webbrowser (Chrome, Firefox, Safari, Edge)
+- Lokale webserver (voor volledige functionaliteit)
+
+### Installatie
+1. Clone of download het project
+2. Open de projectmap in je code editor
+3. Start een lokale webserver:
+   ```bash
+   # Met Python 3
+   python -m http.server 8000
+   
+   # Met Node.js (http-server)
+   npx http-server
+   
+   # Met PHP
+   php -S localhost:8000
+   ```
+4. Open `http://localhost:8000` in je browser
+
+### Direct Gebruik
+Voor eenvoudige preview kun je ook direct `index.html` openen in je browser, maar sommige functionaliteiten (zoals localStorage) werken mogelijk niet zonder webserver.
+
+## 🎯 Belangrijke Bestanden
+
+### `index.html`
+- Hoofdpagina met hero section, new arrivals carousel
+- Responsive header met logo en navigatie
+- Footer met contact informatie en social media links
+
+### `styles.css`
+- Complete styling voor alle pagina's
+- Responsive breakpoints voor verschillende schermformaten
+- Animaties en hover effecten
+- Cart en payment overlay styling
+
+### `script.js`
+- Hamburger menu functionaliteit
+- New arrivals carousel (5-slot sliding)
+- Product filtering systeem
+- Newsletter form handling
+- Smooth scrolling navigatie
+
+### `cart.js`
+- ShoppingCart class met localStorage integratie
+- Product toevoegen/verwijderen functionaliteit
+- Maat selectie systeem
+- Betalingsformulier processing
+- Cart animaties en feedback
+
+## 🎨 Design Features
+
+### Kleurenschema
+- **Primair**: Donkere achtergrond (#383838, #181818)
+- **Accent**: Witte tekst en elementen
+- **CTA**: Rode accenten voor call-to-action buttons
+- **Success**: Groen voor succes feedback
+
+### Typografie
+- **Hoofdfont**: Poppins (300, 400, 500, 600 weights)
+- **Logo Font**: Days One
+- **Icons**: Font Awesome 6.0
+
+### Responsive Breakpoints
+- **Desktop**: 1200px+
+- **Tablet**: 768px - 1199px
+- **Mobile**: < 768px
+
+## 🛍️ Producten
+
+Het huidige assortiment bevat:
+- **Bloem Shirt** - €40
+- **AI Garden Shirt** - €40
+- **Fruit Shirt** - €40
+- **House Shirt** - €40
+- **Parrot Shirt** - €40
+- **Vase Shirt** - €40
+
+Alle producten zijn beschikbaar in verschillende maten (XS, S, M, L, XL).
+
+## 🔧 Customization
+
+### Nieuwe Producten Toevoegen
+1. Voeg product afbeeldingen toe aan `images/`
+2. Update `products` array in `script.js`
+3. Voeg product pagina toe (gebruik bestaande als template)
+
+### Styling Aanpassen
+- Kleuren: Update CSS custom properties in `styles.css`
+- Layout: Pas grid en flexbox properties aan
+- Animaties: Wijzig keyframes en transition properties
+
+### Functionaliteit Uitbreiden
+- Backend integratie voor echte betalingen
+- Database voor product management
+- User accounts en order history
+- Admin panel voor content management
+
+## 🌐 Browser Ondersteuning
+
+- ✅ Chrome 60+
+- ✅ Firefox 55+
+- ✅ Safari 12+
+- ✅ Edge 79+
+- ⚠️ Internet Explorer (niet ondersteund)
+
+## 📱 Mobile Optimalisatie
+
+- Touch-friendly interface
+- Responsive images
+- Optimized carousel voor touch
+- Mobile-first CSS approach
+- Fast loading times
+
+## 🔒 Privacy & Security
+
+- Geen externe tracking scripts
+- LocalStorage voor winkelwagen (client-side)
+- Geen persoonlijke data verzameling
+- HTTPS ready
+
+## 📞 Contact
+
+- **Email**: info@fiori.com
+- **Telefoon**: +31 20 123 4567
+- **Locatie**: Amsterdam, Nederland
+
+## 📄 Licentie
+
+Dit project is ontwikkeld voor het Fiori kledingmerk. Alle rechten voorbehouden.
+
+---
+
+**Fiori** - Bringing summer vibes to life through playful, fresh designs. 🌸☀️
