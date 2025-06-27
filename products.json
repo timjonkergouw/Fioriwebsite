@@ -1,0 +1,117 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Fiori Bloem Tekst Shirt",
+      "price": 40,
+      "description": "Een vrolijk bloemenshirt gemaakt van 100% biologisch katoen. Perfect voor zonnige dagen en casual uitjes. Het shirt heeft een comfortabele pasvorm en is verkrijgbaar in verschillende maten. De bloemenprint brengt de zomer direct naar je garderobe.",
+      "category": "tshirt",
+      "images": [
+        "images/Bloem shirt met vrouw model.png",
+        "images/Bloem shirt met vrouw model.png",
+        "images/Bloem shirt met vrouw model.png"
+      ],
+      "details": {
+        "material": "100% biologisch katoen",
+        "fit": "Regular fit",
+        "care": "Machine wasbaar op 30°C",
+        "sustainability": "GOTS gecertificeerd"
+      }
+    },
+    {
+      "id": 2,
+      "name": "Fiori wijngaarde Shirt",
+      "price": 40,
+      "description": "Een futuristisch shirt met een AI-gegenereerde tuinprint die de perfecte balans vindt tussen technologie en natuur. Dit unieke design combineert moderne AI-kunst met de tijdloze schoonheid van een bloeiende tuin. Perfect voor wie houdt van innovatie en creativiteit in mode.",
+      "category": "tshirt",
+      "images": [
+        "images/Fiori ai gaarde met model.png",
+        "images/Fiori ai gaarde met model.png",
+        "images/Fiori ai gaarde met model.png"
+      ],
+      "details": {
+        "material": "100% biologisch katoen",
+        "fit": "Regular fit",
+        "care": "Machine wasbaar op 30°C",
+        "design": "AI-gegenereerde unieke print",
+        "sustainability": "GOTS gecertificeerd"
+      }
+    },
+    {
+      "id": 3,
+      "name": "Fiori Fruit Shirt",
+      "price": 40,
+      "description": "Een kleurrijk shirt met een vrolijke fruitprint die de zomer tot leven brengt. Dit shirt is perfect voor warme dagen en brengt een speelse touch aan je outfit. De fruitmotieven zijn gedrukt op hoogwaardig biologisch katoen voor optimaal comfort.",
+      "category": "tshirt",
+      "images": [
+        "images/Fiori fruit model.png",
+        "images/Fiori fruit design 2 1.png",
+        "images/Fiori fruit thee 1.png",
+        "images/Fiori t shirt template fruit 2.png",
+        "images/Fiori t shirt template fruit 3.png",
+        "images/alle fruit fiori design 1.png"
+      ],
+      "details": {
+        "material": "100% biologisch katoen",
+        "fit": "Regular fit",
+        "care": "Machine wasbaar op 30°C",
+        "sustainability": "GOTS gecertificeerd"
+      }
+    },
+    {
+      "id": 4,
+      "name": "Bloemhuis Fiori Shirt",
+      "price": 40,
+      "description": "Een uniek shirt met een architecturaal huisdesign dat perfect past bij de Fiori esthetiek. Dit shirt combineert moderne architectuur met vrolijke kleuren voor een tijdloze look die geschikt is voor elke gelegenheid.",
+      "category": "tshirt",
+      "images": [
+        "images/Fiori huis met model.png",
+        "images/Fiori huis met model.png",
+        "images/Fiori huis met model.png"
+      ],
+      "details": {
+        "material": "100% biologisch katoen",
+        "fit": "Regular fit",
+        "care": "Machine wasbaar op 30°C",
+        "sustainability": "GOTS gecertificeerd"
+      }
+    },
+    {
+      "id": 5,
+      "name": "Papagaai Fiori Shirt",
+      "price": 40,
+      "description": "Een exotisch shirt met een kleurrijke papegaai print die de tropische sfeer naar je garderobe brengt. Perfect voor wie houdt van vrolijke, opvallende designs en een beetje avontuur in hun kledingstijl.",
+      "category": "tshirt",
+      "images": [
+        "images/Fiori papegaai shirt.png",
+        "images/Fiori papegaai shirt.png",
+        "images/Fiori papegaai shirt.png"
+      ],
+      "details": {
+        "material": "100% biologisch katoen",
+        "fit": "Regular fit",
+        "care": "Machine wasbaar op 30°C",
+        "sustainability": "GOTS gecertificeerd"
+      }
+    },
+    {
+      "id": 6,
+      "name": "Fiori Bloemenvaas Shirt",
+      "price": 40,
+      "description": "Een elegant shirt met een vaasdesign dat de schoonheid van bloemen en keramiek combineert. Dit shirt heeft een subtiele maar opvallende print die perfect past bij de Fiori collectie.",
+      "category": "tshirt",
+      "images": [
+        "images/Vaas shirt met model 2.png",
+        "images/Vaas shirt met model 2.png",
+        "images/Vaas shirt met model 2.png",
+        "images/Vaas shirt met model 2.png"
+      ],
+      "details": {
+        "material": "100% biologisch katoen",
+        "fit": "Regular fit",
+        "care": "Machine wasbaar op 30°C",
+        "sustainability": "GOTS gecertificeerd"
+      }
+    }
+  ]
+} 

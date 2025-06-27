@@ -1,17 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fiori</title>
+    <title>Product - Fiori</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Days+One&display=swap" rel="stylesheet">
 </head>
-
-<body class="home" style="background: #383838;">
+<body class="product-page" style="background: #181818;">
     <!-- Header -->
     <header>
         <div class="logo">
@@ -24,7 +22,7 @@
             <span></span>
             <span></span>
         </div>
-        <div class="cart-icon">
+        <div class="cart-icon" onclick="openCart()">
             <i class="fas fa-shopping-cart"></i>
             <span class="cart-count">0</span>
         </div>
@@ -41,43 +39,64 @@
         </ul>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <img src="images/Fiori animatie loop.gif" alt="Fiori Fashion Showcase" class="hero-gif">
-        <div class="section-gradient"></div>
-    </section>
+    <!-- Loading State -->
+    <div id="loadingState" class="loading-state">
+        <div class="loading-spinner"></div>
+        <p>Product laden...</p>
+    </div>
 
-    <!-- Hero to New Arrivals Gradient -->
-    <section class="hero-new-arrivals-gradient"></section>
+    <!-- Error State -->
+    <div id="errorState" class="error-state" style="display: none;">
+        <i class="fas fa-exclamation-triangle"></i>
+        <h2>Product niet gevonden</h2>
+        <p>Het opgevraagde product bestaat niet of is niet meer beschikbaar.</p>
+        <a href="new-arrivals.html" class="back-btn">Terug naar producten</a>
+    </div>
 
-    <!-- New Arrivals -->
-    <section class="new-arrivals">
-        <h2>New Arrivals</h2>
-        <div class="carousel-container">
-            <button class="carousel-arrow left"></button>
-            <div class="carousel">
-                <div class="carousel-item"><a href="product.html?id=1"><img src="images/Bloem shirt met vrouw model.png" alt="New Item 1"></a></div>
-                <div class="carousel-item"><a href="product.html?id=2"><img src="images/Fiori ai gaarde met model.png" alt="New Item 2"></a></div>
-                <div class="carousel-item"><a href="product.html?id=3"><img src="images/Fiori fruit met model.png" alt="New Item 3"></a></div>
-                <div class="carousel-item"><a href="product.html?id=4"><img src="images/Fiori huis met model.png" alt="New Item 4"></a></div>
-                <div class="carousel-item"><a href="product.html?id=5"><img src="images/Fiori papegaai shirt.png" alt="New Item 5"></a></div>
+    <!-- Product Section -->
+    <section id="productSection" class="product-section" style="display: none;">
+        <div class="product-container">
+            <!-- Product Images -->
+            <div class="product-images">
+                <div class="main-image">
+                    <img id="mainProductImage" src="" alt="">
+                </div>
+                <div class="image-thumbnails" id="imageThumbnails">
+                    <!-- Thumbnails will be dynamically added here -->
+                </div>
             </div>
-            <button class="carousel-arrow right"></button>
-        </div>
-        <a href="/new-arrivals.html" class="all-arrivals-btn">Discover All</a>
-    </section>
 
-    <!-- About Section -->
-    <section class="about-section" style="background: white;">
-        <div class="about-content">
-            <h2>About Fiori</h2>
-            <p>Fiori is a brand that brings a cheerful, summery vibe to life through playful, fresh designs. Inspired by
-                sunshine, nature, and color, Fiori captures the joy of warm days. The name Fiori means "flowers" in
-                Italian, reflecting the brand's love for blooming beauty and vibrant energy. Every piece is made to
-                brighten your day—just like summer does.</p>
-        </div>
-        <div class="about-visual">
-            <img src="images/Fiori combilogo.png" alt="Fiori Logo Variations">
+            <!-- Product Info -->
+            <div class="product-info">
+                <h1 id="productTitle" class="product-title"></h1>
+                <p id="productDescription" class="product-description"></p>
+                <div id="productPrice" class="product-price"></div>
+                
+                <!-- Size Selection -->
+                <div class="size-selection">
+                    <label>Maat:</label>
+                    <div class="size-options">
+                        <button class="size-option" data-size="S" onclick="selectSize(this, 'S')">S</button>
+                        <button class="size-option" data-size="M" onclick="selectSize(this, 'M')">M</button>
+                        <button class="size-option" data-size="L" onclick="selectSize(this, 'L')">L</button>
+                        <button class="size-option" data-size="XL" onclick="selectSize(this, 'XL')">XL</button>
+                    </div>
+                </div>
+
+                <!-- Add to Cart Button -->
+                <button id="addToCartBtn" class="add-to-cart-btn" onclick="addToCart()">
+                    <i class="fas fa-shopping-cart"></i>
+                    Voeg toe aan winkelmand
+                </button>
+
+                <!-- Product Details -->
+                <div class="product-details">
+                    <h3>Product Details</h3>
+                    <ul id="productDetailsList">
+                        <!-- Product details will be dynamically added here -->
+                    </ul>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -169,8 +188,25 @@
         </div>
     </div>
 
+    <!-- Image Popup Carousel -->
+    <div class="image-popup-overlay" id="imagePopupOverlay" onclick="closeImagePopupOnOverlayClick(event)">
+        <div class="image-popup-content">
+            <button class="image-popup-close" onclick="closeImagePopup()">&times;</button>
+            <div class="image-popup-carousel">
+                <button class="image-popup-arrow left" onclick="changePopupImage(-1)"></button>
+                <div class="image-popup-main">
+                    <img id="popupMainImage" src="" alt="">
+                </div>
+                <button class="image-popup-arrow right" onclick="changePopupImage(1)"></button>
+            </div>
+            <div class="image-popup-thumbnails" id="popupThumbnails">
+                <!-- Popup thumbnails will be dynamically added here -->
+            </div>
+        </div>
+    </div>
+
     <script src="script.js"></script>
     <script src="cart.js"></script>
+    <script src="product-loader.js"></script>
 </body>
-
-</html>
+</html> 
