@@ -11,10 +11,17 @@ body {
     color: #fff;
     overflow-x: hidden;
     width: 100%;
+    background: #181818;
+}
+
+body.menu-open {
+    overflow: hidden;
 }
 
 body.home .hero {
     margin-top: 0;
+    position: relative;
+    z-index: 1;
 }
 body.products .product-filters {
     margin-top: 0;
@@ -98,9 +105,9 @@ body.products .product-filters {
 
 /* Header Styles */
 header {
-    position: sticky;
+    position: fixed;
     top: 0;
-    z-index: 100;
+    z-index: 1000;
     background: transparent !important;
     width: 100%;
     box-shadow: none !important;
@@ -110,12 +117,14 @@ header {
     justify-content: center;
     align-items: center;
     border: none !important;
+    pointer-events: none;
 }
 
 .logo {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
+    pointer-events: auto;
 }
 
 .logo a {
@@ -126,12 +135,14 @@ header {
 .logo-img {
     height: 70px;
     transition: all 0.3s ease;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.8));
 }
 
 .logo:hover .logo-img {
     transform: scale(1.1);
     content: url('images/Fiori logo.png');
     height: 70px;
+    filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.9));
 }
 
 .hamburger-menu {
@@ -142,6 +153,11 @@ header {
     cursor: pointer;
     width: 30px;
     height: 20px;
+    pointer-events: auto;
+    z-index: 1001;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .hamburger-menu span {
@@ -149,13 +165,22 @@ header {
     width: 100%;
     height: 2px;
     background: #fff;
-    position: absolute;
     transition: all 0.3s ease;
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.8));
 }
 
-.hamburger-menu span:nth-child(1) { top: 0; }
-.hamburger-menu span:nth-child(2) { top: 50%; transform: translateY(-50%); }
-.hamburger-menu span:nth-child(3) { bottom: 0; }
+/* Hamburger menu animation */
+.hamburger-menu.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger-menu.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger-menu.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -6px);
+}
 
 /* Cart Icon */
 .cart-icon {
@@ -167,10 +192,13 @@ header {
     font-size: 1.5rem;
     color: #fff;
     transition: color 0.3s ease;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.8));
+    pointer-events: auto;
 }
 
 .cart-icon:hover {
     color: #ccc;
+    filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.9));
 }
 
 .cart-count {
@@ -203,34 +231,114 @@ header {
     left: -300px;
     width: 300px;
     height: 100vh;
-    background: #333;
-    padding: 80px 2rem 2rem;
+    background: white;
     box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
     transition: left 0.3s ease;
-    z-index: 999;
+    z-index: 1000;
+    overflow-y: auto;
 }
 
 .side-menu.active {
     left: 0;
 }
 
-.side-menu ul {
+.side-menu-header {
+    padding: 20px;
+    text-align: center;
+    border-bottom: 1px solid #eee;
+}
+
+.side-menu-logo {
+    width: 120px;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.side-menu-divider {
+    height: 1px;
+    background: #ddd;
+    margin: 20px 0;
+}
+
+.side-menu-content {
     list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
-.side-menu li {
-    margin: 1.5rem 0;
+.menu-section {
+    border-bottom: 1px solid #eee;
 }
 
-.side-menu a {
+.menu-section-header {
+    padding: 15px 20px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.2s;
+}
+
+.menu-section-header:hover {
+    background-color: #f5f5f5;
+}
+
+.menu-section-header span {
+    font-weight: 500;
+    color: #333;
+}
+
+.menu-section-header i {
+    transition: transform 0.3s;
+    color: #333;
+}
+
+.menu-section-header.active i {
+    transform: rotate(180deg);
+}
+
+.submenu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+}
+
+.submenu.active {
+    max-height: 200px;
+}
+
+.submenu li {
+    padding: 10px 20px 10px 40px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.submenu li:last-child {
+    border-bottom: none;
+}
+
+.submenu a {
     text-decoration: none;
-    color: #fff;
-    font-size: 1.2rem;
-    transition: color 0.3s ease;
+    color: #666;
+    transition: color 0.2s;
 }
 
-.side-menu a:hover {
-    color: #ccc;
+.submenu a:hover {
+    color: #333;
+}
+
+.menu-section a {
+    text-decoration: none;
+    color: #333;
+    padding: 15px 20px;
+    display: block;
+    transition: background-color 0.2s;
+}
+
+.menu-section a:hover {
+    background-color: #f5f5f5;
 }
 
 /* Hero Section */
@@ -240,12 +348,20 @@ header {
     width: 100%;
     overflow: hidden;
     border: none !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0;
+    top: 0;
 }
 
 .hero-gif {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center;
+    min-width: 100%;
+    min-height: 100%;
 }
 
 .section-gradient {
@@ -277,6 +393,7 @@ header {
     padding: 4rem 2rem;
     background: #383838;
     text-align: center;
+    z-index: 1;
 }
 
 .new-arrivals h2 {
@@ -396,13 +513,14 @@ header {
     display: flex;
     align-items: center;
     padding: 4rem 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
+    width: 100%;
     gap: 4rem;
 }
 
 .about-content {
     flex: 1;
+    max-width: 600px;
+    margin: 0 auto;
 }
 
 .about-content h2 {
@@ -424,6 +542,8 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
+    max-width: 600px;
+    margin: 0 auto;
 }
 
 .about-visual img {
@@ -508,9 +628,29 @@ footer {
 }
 
 @media (max-width: 768px) {
+    .hamburger-menu {
+        display: flex !important;
+    }
+    
+    .hero {
+        height: 100vh;
+        width: 100vw;
+        overflow: hidden;
+    }
+
+    .hero-gif {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        min-width: 100%;
+        min-height: 100%;
+    }
+
     .about-section {
         flex-direction: column;
         text-align: center;
+        width: 100%;
     }
 
     .footer-content {
@@ -546,12 +686,17 @@ footer {
     .carousel-arrow.right::before {
         margin-right: 15px;
     }
+    
+    .cart-icon {
+        right: 5rem;
+    }
 }
 
 @media (max-width: 900px) {
     .about-section {
         padding: 2rem 1rem;
         gap: 2rem;
+        width: 100%;
     }
 
     .about-content, .about-visual {
@@ -598,6 +743,29 @@ footer {
 }
 
 @media (max-width: 700px) {
+    .hamburger-menu {
+        display: flex !important;
+    }
+    
+    .cart-icon {
+        right: 5rem;
+    }
+    
+    .hero {
+        height: 100vh;
+        width: 100vw;
+        overflow: hidden;
+    }
+
+    .hero-gif {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        min-width: 100%;
+        min-height: 100%;
+    }
+
     body.home .hero,
     body.products .product-filters {
         margin-top: 100px;
@@ -825,9 +993,49 @@ h2 {
     transition: transform 0.3s ease;
 }
 
-.main-image:hover img {
-    transform: scale(1.05);
+.main-image img {
+    width: 100%;
+    height: 100%;
     object-fit: contain;
+    display: block;
+    transition: none;
+}
+
+/* Product Image Navigation Arrows */
+.product-image-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    z-index: 10;
+}
+
+.product-image-arrow:hover {
+    background: rgba(0, 0, 0, 0.9);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.product-image-arrow.left {
+    left: 15px;
+}
+
+.product-image-arrow.right {
+    right: 15px;
+}
+
+.product-image-arrow i {
+    font-size: 1.2rem;
 }
 
 .image-navigation {
@@ -1010,6 +1218,15 @@ h2 {
         width: 100%;
     }
 
+    .product-image-arrow {
+        width: 40px;
+        height: 40px;
+    }
+
+    .product-image-arrow i {
+        font-size: 1rem;
+    }
+
     .image-thumbnails {
         height: 100px;
     }
@@ -1040,6 +1257,15 @@ h2 {
     .main-image {
         height: 350px;
         width: 100%;
+    }
+
+    .product-image-arrow {
+        width: 35px;
+        height: 35px;
+    }
+
+    .product-image-arrow i {
+        font-size: 0.9rem;
     }
 
     .image-thumbnails {

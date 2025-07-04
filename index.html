@@ -32,12 +32,27 @@
 
     <!-- Side Menu -->
     <nav class="side-menu">
-        <ul>
-            <li><a href="#">T-shirts</a></li>
-            <li><a href="#">Sweaters</a></li>
-            <li><a href="#">Hoodies</a></li>
-            <li><a href="#">Knitwear</a></li>
-            <li><a href="#">Jeans</a></li>
+        <div class="side-menu-header">
+            <img src="images/Fiori logo zwartwit.png" alt="Fiori Logo" class="side-menu-logo">
+            <div class="side-menu-divider"></div>
+        </div>
+        <ul class="side-menu-content">
+            <li class="menu-section">
+                <div class="menu-section-header" onclick="toggleClothingMenu()">
+                    <span>Clothing</span>
+                    <i class="fas fa-chevron-down" id="clothingArrow"></i>
+                </div>
+                <ul class="submenu" id="clothingSubmenu">
+                    <li><a href="producten.html?category=tshirt">T-shirts</a></li>
+                    <li><a href="producten.html?category=sweater">Sweaters</a></li>
+                    <li><a href="producten.html?category=hoodie">Hoodies</a></li>
+                    <li><a href="producten.html?category=knitwear">Knitwear</a></li>
+                    <li><a href="producten.html?category=jeans">Jeans</a></li>
+                </ul>
+            </li>
+            <li class="menu-section">
+                <a href="#about">About</a>
+            </li>
         </ul>
     </nav>
 
@@ -64,7 +79,7 @@
             </div>
             <button class="carousel-arrow right"></button>
         </div>
-        <a href="/new-arrivals.html" class="all-arrivals-btn">Discover All</a>
+        <a href="/producten.html" class="all-arrivals-btn">Discover All</a>
     </section>
 
     <!-- About Section -->
@@ -92,7 +107,7 @@
             <div class="location">
                 <h3>Location</h3>
                 <p>Fiori Store</p>
-                <p>Amsterdam, Netherlands</p>
+                <p>'s-Hertogenbosch, Netherlands</p>
             </div>
             <div class="newsletter">
                 <h3>Newsletter</h3>

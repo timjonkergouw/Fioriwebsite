@@ -1,81 +1,87 @@
 // Hamburger Menu Functionality
-const hamburger = document.querySelector('.hamburger-menu');
-const sideMenu = document.querySelector('.side-menu');
-let isMenuOpen = false;
-
-hamburger.addEventListener('click', () => {
-    isMenuOpen = !isMenuOpen;
-    hamburger.classList.toggle('active');
-    sideMenu.classList.toggle('active');
+document.addEventListener('DOMContentLoaded', function() {
+    const hamburger = document.querySelector('.hamburger-menu');
+    const sideMenu = document.querySelector('.side-menu');
     
-    // Animate menu items
-    const menuItems = sideMenu.querySelectorAll('li');
-    menuItems.forEach((item, index) => {
-        if (isMenuOpen) {
-            item.style.animation = `slideIn 0.3s ease forwards ${index * 0.1}s`;
-        } else {
-            item.style.animation = 'none';
-        }
-    });
-});
-
-// Close menu when clicking outside
-document.addEventListener('click', (e) => {
-    if (isMenuOpen && !sideMenu.contains(e.target) && !hamburger.contains(e.target)) {
-        isMenuOpen = false;
-        hamburger.classList.remove('active');
-        sideMenu.classList.remove('active');
+    console.log('=== HAMBURGER MENU DEBUG ===');
+    console.log('Hamburger menu script loaded');
+    console.log('Hamburger element:', hamburger);
+    console.log('Side menu element:', sideMenu);
+    console.log('Hamburger display style:', hamburger ? getComputedStyle(hamburger).display : 'null');
+    console.log('Side menu left position:', sideMenu ? getComputedStyle(sideMenu).left : 'null');
+    
+    if (hamburger && sideMenu) {
+        // Force hamburger to be visible
+        hamburger.style.display = 'flex';
+        hamburger.style.flexDirection = 'column';
+        hamburger.style.justifyContent = 'space-between';
         
-        // Reset animations
-        const menuItems = sideMenu.querySelectorAll('li');
-        menuItems.forEach(item => {
-            item.style.animation = 'none';
+        hamburger.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            console.log('=== HAMBURGER CLICKED ===');
+            
+            const wasActive = sideMenu.classList.contains('active');
+            sideMenu.classList.toggle('active');
+            hamburger.classList.toggle('active');
+            
+            console.log('Menu was active:', wasActive);
+            console.log('Menu is now active:', sideMenu.classList.contains('active'));
+            console.log('Hamburger is now active:', hamburger.classList.contains('active'));
+            console.log('Side menu left position:', getComputedStyle(sideMenu).left);
         });
+        
+        // Close when clicking outside
+        document.addEventListener('click', function(e) {
+            if (sideMenu.classList.contains('active') && 
+                !sideMenu.contains(e.target) && 
+                !hamburger.contains(e.target)) {
+                console.log('=== CLOSING MENU - CLICKED OUTSIDE ===');
+                sideMenu.classList.remove('active');
+                hamburger.classList.remove('active');
+            }
+        });
+        
+        // Prevent menu from closing when clicking inside
+        sideMenu.addEventListener('click', function(e) {
+            e.stopPropagation();
+            console.log('=== CLICKED INSIDE MENU ===');
+        });
+        
+        console.log('Event listeners attached successfully');
+    } else {
+        console.error('=== ERROR: Hamburger menu or side menu not found ===');
+        console.error('Hamburger:', hamburger);
+        console.error('Side menu:', sideMenu);
     }
 });
 
-// Close menu when clicking a link
-const menuLinks = sideMenu.querySelectorAll('a');
-menuLinks.forEach(link => {
-    link.addEventListener('click', () => {
-        isMenuOpen = false;
-        hamburger.classList.remove('active');
-        sideMenu.classList.remove('active');
-        
-        // Reset animations
-        const menuItems = sideMenu.querySelectorAll('li');
-        menuItems.forEach(item => {
-            item.style.animation = 'none';
-        });
-    });
-});
-
-// Close menu with ESC key
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && isMenuOpen) {
-        isMenuOpen = false;
-        hamburger.classList.remove('active');
-        sideMenu.classList.remove('active');
-        
-        // Reset animations
-        const menuItems = sideMenu.querySelectorAll('li');
-        menuItems.forEach(item => {
-            item.style.animation = 'none';
-        });
+// Toggle clothing submenu
+function toggleClothingMenu() {
+    const submenu = document.getElementById('clothingSubmenu');
+    const arrow = document.getElementById('clothingArrow');
+    const header = document.querySelector('.menu-section-header');
+    
+    if (submenu && arrow && header) {
+        submenu.classList.toggle('active');
+        arrow.classList.toggle('active');
+        header.classList.toggle('active');
     }
-});
+}
 
 // Newsletter form submission
 const newsletterForm = document.querySelector('.newsletter form');
-newsletterForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const email = newsletterForm.querySelector('input[type="email"]').value;
-    if (email) {
-        // Here you would typically send the email to your backend
-        alert('Thank you for subscribing to our newsletter!');
-        newsletterForm.reset();
-    }
-});
+if (newsletterForm) {
+    newsletterForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const email = newsletterForm.querySelector('input[type="email"]').value;
+        if (email) {
+            // Here you would typically send the email to your backend
+            alert('Thank you for subscribing to our newsletter!');
+            newsletterForm.reset();
+        }
+    });
+}
 
 // Smooth scroll for navigation links
 document.querySelectorAll('.side-menu a').forEach(link => {
@@ -86,7 +92,10 @@ document.querySelectorAll('.side-menu a').forEach(link => {
         
         if (targetElement) {
             targetElement.scrollIntoView({ behavior: 'smooth' });
-            sideMenu.classList.remove('active');
+            const sideMenu = document.querySelector('.side-menu');
+            if (sideMenu) {
+                sideMenu.classList.remove('active');
+            }
             document.body.style.overflow = '';
         }
     });
@@ -98,14 +107,14 @@ const slots = Array.from(document.querySelectorAll('.carousel-item'));
 const leftArrow = document.querySelector('.carousel-arrow.left');
 const rightArrow = document.querySelector('.carousel-arrow.right');
 
-// List of all images (add more if needed)
+// List of all images with their corresponding product IDs (add more if needed)
 const images = [
-    { src: 'images/Bloem shirt met vrouw model.png', alt: 'New Item 1' },
-    { src: 'images/Fiori ai gaarde met model.png', alt: 'New Item 2' },
-    { src: 'images/Fiori fruit met model.png', alt: 'New Item 3' },
-    { src: 'images/Fiori huis met model.png', alt: 'New Item 4' },
-    { src: 'images/Fiori papegaai shirt.png', alt: 'New Item 5' },
-    { src: 'images/Vaas shirt met model 2.png', alt: 'New Item 6' }
+    { src: 'images/Bloem shirt met vrouw model.png', alt: 'New Item 1', productId: 1 },
+    { src: 'images/Fiori ai gaarde met model.png', alt: 'New Item 2', productId: 2 },
+    { src: 'images/Fiori fruit met model.png', alt: 'New Item 3', productId: 3 },
+    { src: 'images/Fiori huis met model.png', alt: 'New Item 4', productId: 4 },
+    { src: 'images/Fiori papegaai shirt.png', alt: 'New Item 5', productId: 5 },
+    { src: 'images/Vaas shirt met model 2.png', alt: 'New Item 6', productId: 6 }
 ];
 
 let startIndex = 0; // Index of the image in the first slot
@@ -120,8 +129,15 @@ function updateCarousel() {
         const imgIndex = (startIndex + i) % images.length;
         const slot = slots[i];
         const img = slot.querySelector('img');
+        const link = slot.querySelector('a');
+        
+        // Update image
         img.src = images[imgIndex].src;
         img.alt = images[imgIndex].alt;
+        
+        // Update link
+        link.href = `product.html?id=${images[imgIndex].productId}`;
+        
         if (i === 0) slot.classList.add('far-left');
         else if (i === 1) slot.classList.add('left');
         else if (i === 2) slot.classList.add('center');
@@ -140,11 +156,15 @@ function goRight() {
     updateCarousel();
 }
 
-leftArrow.addEventListener('click', goLeft);
-rightArrow.addEventListener('click', goRight);
+if (leftArrow && rightArrow) {
+    leftArrow.addEventListener('click', goLeft);
+    rightArrow.addEventListener('click', goRight);
+}
 
 // Initialize
-updateCarousel();
+if (carousel) {
+    updateCarousel();
+}
 
 // Product Data and Filtering Functionality
 const products = [
@@ -192,95 +212,63 @@ const products = [
     }
 ];
 
-// Product filtering functionality
+// Initialize product filtering if on products page
 function initializeProductFiltering() {
-    console.log('Starting product filtering initialization...');
-    
-    const productGrid = document.getElementById('productGrid');
     const filterButtons = document.querySelectorAll('.filter-btn');
+    const productGrid = document.querySelector('.product-grid');
     
-    console.log('Product grid found:', productGrid);
-    console.log('Filter buttons found:', filterButtons.length);
+    if (!filterButtons.length || !productGrid) return;
     
-    if (!productGrid) {
-        console.log('Product grid not found');
-        return; // Only run on products page
-    }
-    
-    if (filterButtons.length === 0) {
-        console.log('No filter buttons found');
-        return;
-    }
-    
-    console.log('Product grid found, initializing filtering...');
-    
-    let currentCategory = 'all';
-    
-    // Add data-category attribute to existing static cards
-    const existingCards = productGrid.querySelectorAll('.product-card');
-    console.log('Found existing cards:', existingCards.length);
-    
-    existingCards.forEach((card, index) => {
-        card.setAttribute('data-category', 'tshirt');
-        console.log(`Card ${index + 1} assigned category: tshirt`);
-    });
-    
-    function renderProducts(category) {
-        console.log('Rendering products for category:', category);
-        
-        const allCards = productGrid.querySelectorAll('.product-card');
-        console.log('Total cards to filter:', allCards.length);
-        
-        allCards.forEach((card, index) => {
-            const cardCategory = card.getAttribute('data-category');
-            console.log(`Card ${index + 1} category: ${cardCategory}`);
-            
-            if (category === 'all' || cardCategory === category) {
-                card.style.display = 'block';
-                console.log(`Card ${index + 1} shown`);
-            } else {
-                card.style.display = 'none';
-                console.log(`Card ${index + 1} hidden`);
-            }
-        });
-    }
-    
-    // Add click event listeners to filter buttons
-    filterButtons.forEach((button, index) => {
-        console.log(`Adding click listener to button ${index + 1}:`, button.getAttribute('data-category'));
-        
-        button.addEventListener('click', (e) => {
-            e.preventDefault();
-            const category = button.getAttribute('data-category');
-            console.log('Filter button clicked:', category);
-            
+    // Add click event to filter buttons
+    filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
             // Remove active class from all buttons
             filterButtons.forEach(btn => btn.classList.remove('active'));
-            
             // Add active class to clicked button
             button.classList.add('active');
             
-            // Get category and render products
-            currentCategory = category;
+            // Get category from button
+            const category = button.getAttribute('data-category');
+            
+            // Render products for this category
             renderProducts(category);
         });
     });
     
-    // Initialize with all products visible
-    console.log('Initializing product filtering...');
+    // Initial render (show all products)
     renderProducts('all');
 }
 
-// Initialize product filtering when DOM is loaded
-document.addEventListener('DOMContentLoaded', () => {
-    console.log('DOM loaded, initializing product filtering...');
-    initializeProductFiltering();
-});
+function renderProducts(category) {
+    const productGrid = document.querySelector('.product-grid');
+    if (!productGrid) return;
+    
+    // Clear current products
+    productGrid.innerHTML = '';
+    
+    // Filter products based on category
+    const filteredProducts = category === 'all' 
+        ? products 
+        : products.filter(product => product.category === category);
+    
+    // Render filtered products
+    filteredProducts.forEach(product => {
+        const productCard = document.createElement('div');
+        productCard.className = 'product-card';
+        productCard.innerHTML = `
+            <a href="product.html?id=${product.id}" class="product-link">
+                <img src="${product.image}" alt="${product.name}">
+                <div class="product-info">
+                    <div class="product-name">${product.name}</div>
+                    <div class="product-price">€${product.price}</div>
+                </div>
+            </a>
+        `;
+        productGrid.appendChild(productCard);
+    });
+}
 
-// Also try to initialize immediately if DOM is already loaded
-if (document.readyState === 'loading') {
-    console.log('DOM still loading...');
-} else {
-    console.log('DOM already loaded, initializing immediately...');
+// Initialize if on products page
+if (document.querySelector('.product-filters')) {
     initializeProductFiltering();
 } 

@@ -36,7 +36,7 @@ Een moderne kledingwebshop met een dynamische productpagina die productgegevens 
 Fiori/
 ├── index.html              # Hoofdpagina met carousel
 ├── product.html            # Dynamische productpagina
-├── new-arrivals.html       # Productoverzicht
+├── producten.html       # Productoverzicht
 ├── products.json           # Productgegevens
 ├── product-loader.js       # JavaScript voor product loading
 ├── cart.js                 # Winkelwagen functionaliteit
@@ -115,11 +115,11 @@ cart.addItem(product);
 1. Voeg productgegevens toe aan `products.json`
 2. Geef uniek ID
 3. Voeg afbeeldingen toe aan `images/` folder
-4. Update product links in `new-arrivals.html`
+4. Update product links in `producten.html`
 
 ### Nieuwe Categorieën
 1. Voeg categorie toe aan productgegevens
-2. Update filter buttons in `new-arrivals.html`
+2. Update filter buttons in `producten.html`
 3. Voeg CSS styling toe indien nodig
 
 ### Nieuwe Productdetails

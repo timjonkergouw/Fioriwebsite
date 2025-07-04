@@ -30,12 +30,27 @@
 
     <!-- Side Menu -->
     <nav class="side-menu">
-        <ul>
-            <li><a href="#">T-shirts</a></li>
-            <li><a href="#">Sweaters</a></li>
-            <li><a href="#">Hoodies</a></li>
-            <li><a href="#">Knitwear</a></li>
-            <li><a href="#">Jeans</a></li>
+        <div class="side-menu-header">
+            <img src="images/Fiori logo zwartwit.png" alt="Fiori Logo" class="side-menu-logo">
+            <div class="side-menu-divider"></div>
+        </div>
+        <ul class="side-menu-content">
+            <li class="menu-section">
+                <div class="menu-section-header" onclick="toggleClothingMenu()">
+                    <span>Clothing</span>
+                    <i class="fas fa-chevron-down" id="clothingArrow"></i>
+                </div>
+                <ul class="submenu" id="clothingSubmenu">
+                    <li><a href="producten.html?category=tshirt">T-shirts</a></li>
+                    <li><a href="producten.html?category=sweater">Sweaters</a></li>
+                    <li><a href="producten.html?category=hoodie">Hoodies</a></li>
+                    <li><a href="producten.html?category=knitwear">Knitwear</a></li>
+                    <li><a href="producten.html?category=jeans">Jeans</a></li>
+                </ul>
+            </li>
+            <li class="menu-section">
+                <a href="#about">About</a>
+            </li>
         </ul>
     </nav>
 
@@ -50,7 +65,7 @@
         <i class="fas fa-exclamation-triangle"></i>
         <h2>Product niet gevonden</h2>
         <p>Het opgevraagde product bestaat niet of is niet meer beschikbaar.</p>
-        <a href="new-arrivals.html" class="back-btn">Terug naar producten</a>
+        <a href="producten.html" class="back-btn">Terug naar producten</a>
     </div>
 
     <!-- Product Section -->
@@ -59,7 +74,13 @@
             <!-- Product Images -->
             <div class="product-images">
                 <div class="main-image">
+                    <button class="product-image-arrow left" onclick="changeProductImage(-1)">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
                     <img id="mainProductImage" src="" alt="">
+                    <button class="product-image-arrow right" onclick="changeProductImage(1)">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
                 </div>
                 <div class="image-thumbnails" id="imageThumbnails">
                     <!-- Thumbnails will be dynamically added here -->
@@ -111,7 +132,7 @@
             <div class="location">
                 <h3>Location</h3>
                 <p>Fiori Store</p>
-                <p>Amsterdam, Netherlands</p>
+                <p>'s-Hertogenbosch, Netherlands</p>
             </div>
             <div class="newsletter">
                 <h3>Newsletter</h3>

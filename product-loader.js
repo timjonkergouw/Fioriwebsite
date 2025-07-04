@@ -92,7 +92,7 @@ class ProductLoader {
             mainImage.alt = this.currentProduct.name;
 
             // Add click event to main image to open popup
-            mainImage.onclick = () => this.openImagePopup(0);
+            mainImage.onclick = () => this.openImagePopup(this.currentImageIndex);
 
             // Create thumbnails
             thumbnailsContainer.innerHTML = '';
@@ -103,7 +103,7 @@ class ProductLoader {
                 thumbnail.className = `thumbnail ${index === 0 ? 'active' : ''}`;
                 thumbnail.onclick = () => {
                     this.changeImage(imageSrc, thumbnail, index);
-                    this.openImagePopup(index); // Open popup when thumbnail is clicked
+                    // Remove popup functionality from thumbnails
                 };
                 thumbnailsContainer.appendChild(thumbnail);
             });
@@ -193,6 +193,15 @@ class ProductLoader {
         document.querySelectorAll('.thumbnail').forEach((thumb, index) => {
             thumb.classList.toggle('active', index === this.currentImageIndex);
         });
+        
+        // Center the active thumbnail
+        const activeThumbnail = document.querySelector('.thumbnail.active');
+        if (activeThumbnail) {
+            this.centerActiveThumbnail(activeThumbnail);
+        }
+        
+        // Update main image click handler to use current index
+        mainImage.onclick = () => this.openImagePopup(this.currentImageIndex);
     }
 
     updateAddToCartButton(product) {
@@ -405,6 +414,16 @@ function closeImagePopupOnOverlayClick(event) {
 function changePopupImage(direction) {
     if (window.productLoader) {
         window.productLoader.changePopupImage(direction);
+    }
+}
+
+function changeProductImage(direction) {
+    if (window.productLoader) {
+        if (direction === -1) {
+            window.productLoader.previousImage();
+        } else if (direction === 1) {
+            window.productLoader.nextImage();
+        }
     }
 }
 

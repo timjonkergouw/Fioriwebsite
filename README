@@ -47,7 +47,7 @@ Fiori is een Nederlands kledingmerk dat zich richt op vrolijke, zomerse kleding.
 ```
 Fioriwebsite/
 ├── index.html              # Homepage
-├── new-arrivals.html       # Product catalogus pagina
+├── producten.html       # Product catalogus pagina
 ├── product-*.html          # Individuele product pagina's
 ├── styles.css              # Hoofdstijlen
 ├── script.js               # Hoofdfunctionaliteit
