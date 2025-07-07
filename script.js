@@ -10,6 +10,28 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log('Hamburger display style:', hamburger ? getComputedStyle(hamburger).display : 'null');
     console.log('Side menu left position:', sideMenu ? getComputedStyle(sideMenu).left : 'null');
     
+    // Test: Add a temporary visible style to see if elements exist
+    if (hamburger) {
+        hamburger.style.border = '2px solid red';
+        console.log('Hamburger element found and marked with red border');
+    }
+    if (sideMenu) {
+        sideMenu.style.border = '2px solid blue';
+        console.log('Side menu element found and marked with blue border');
+        
+        // Test: Temporarily make the menu visible to see if it exists
+        sideMenu.style.left = '0px';
+        sideMenu.style.background = 'yellow';
+        console.log('Side menu temporarily made visible for testing');
+        
+        // Reset after 3 seconds
+        setTimeout(() => {
+            sideMenu.style.left = '';
+            sideMenu.style.background = '';
+            console.log('Side menu reset to original state');
+        }, 3000);
+    }
+    
     if (hamburger && sideMenu) {
         // Force hamburger to be visible
         hamburger.style.display = 'flex';
@@ -24,11 +46,22 @@ document.addEventListener('DOMContentLoaded', function() {
             const wasActive = sideMenu.classList.contains('active');
             sideMenu.classList.toggle('active');
             hamburger.classList.toggle('active');
+            document.body.classList.toggle('menu-open');
             
             console.log('Menu was active:', wasActive);
             console.log('Menu is now active:', sideMenu.classList.contains('active'));
             console.log('Hamburger is now active:', hamburger.classList.contains('active'));
+            console.log('Body menu-open class:', document.body.classList.contains('menu-open'));
             console.log('Side menu left position:', getComputedStyle(sideMenu).left);
+            console.log('Side menu computed styles:', {
+                left: getComputedStyle(sideMenu).left,
+                position: getComputedStyle(sideMenu).position,
+                width: getComputedStyle(sideMenu).width,
+                height: getComputedStyle(sideMenu).height,
+                zIndex: getComputedStyle(sideMenu).zIndex,
+                display: getComputedStyle(sideMenu).display,
+                visibility: getComputedStyle(sideMenu).visibility
+            });
         });
         
         // Close when clicking outside
@@ -39,6 +72,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 console.log('=== CLOSING MENU - CLICKED OUTSIDE ===');
                 sideMenu.classList.remove('active');
                 hamburger.classList.remove('active');
+                document.body.classList.remove('menu-open');
             }
         });
         
